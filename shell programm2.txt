@@ -1,0 +1,262 @@
+prg1.sh
+#!/bin/bash
+#Compare two numbers
+read num1
+read num2
+if [ $num1 -gt $num2 ]
+then
+   echo "$num1 is big"
+else
+   if [ $num1 -eq $num2 ]
+   then
+       echo "Both are equal"
+   else
+   echo "$num2 is big"
+   fi
+fi
+
+
+prg2.sh
+#!/bin/bash
+#Find large number among give three numbers
+read -p "Num1:" num1
+read -p "Num2:" num2
+read -p "Num3:" num3
+if [ $num1 -gt $num2 ]
+then
+    if [ $num1 -gt $num3 ]
+    then
+        echo "$num1 is large"
+    fi
+    if [ $num3 -gt $num1 ]
+    then
+        echo "$num3 is large"
+    fi
+else
+    if [ $num2 -gt $num3 ]
+    then
+       echo "$num2 is large"
+    fi
+    if [ $num3 -gt $num2 ]
+    then
+       echo "$num3 is large"
+    fi
+fi
+
+
+prg3.sh
+
+#!/bin/bash
+#Find large number among give three numbers
+read -p "Num1:" num1
+read -p "Num2:" num2
+read -p "Num3:" num3
+if [ $num1 -gt $num2 ]
+then
+    if [ $num1 -gt $num3 ]  # Ineer if begins here
+    then
+        echo "$num1 is large"
+    elif [ $num3 -gt $num1 ] #this else is for inner if
+    then
+        echo "$num3 is large"
+    fi                       #Inner if ends here
+elif [ $num2 -gt $num3 ] #This else for outerif
+    then
+     echo "$num2 is large"
+    elif [ $num3 -gt $num2 ]
+    then
+     echo "$num3 is large"
+fi #Outer If ends here
+
+
+prg4.sh
+#Demonstrate Arithmetic expression with compound perenthesis.
+#!/bin/bash
+read -p "Enter first number:" num1
+read -p "Enter second number:" num2
+#Here are arithmetic comparision
+##  -gt  >
+##  -lt  <
+##  -ge  >=
+##  -le  <=
+##  -eq  ==
+##  -ne  !=
+## these symbols can be used in the compound style ((operaand Operator Operand))
+#if ((num1>num2)) # if [ $num1 -gt $num2 ]
+if ((num1>num2))
+then
+  echo "$num1 is big"
+fi
+if ((num1<num2))
+then
+  echo "$num1 is lower"
+fi
+if ((num1==num2))
+then
+  echo "num1 and num2 are equal"
+fi
+if ((num1>=num2))
+then
+ echo "num1 is greater or equal to num2"
+fi
+if ((num1<=num2))
+then
+ echo "num1 is lessthan or equal to num2"
+fi
+if ((num1!=num2))
+then
+ echo "num1 is Not equal to num2"
+fi
+
+#End
+
+prg5.sh
+
+#!/bin/bash
+#Demonstrate string comparisons in bash shell
+#Program to check if given two strings are same or equal
+echo "Enter the string1:"
+read str1
+echo "Enter the string2:"
+read str2
+#Now check if they are equal
+#if [ $str1 == $str2 ]  #Double equal also will do.
+if [ $str1 = $str2 ]
+then
+ echo "Both are equal"
+fi
+
+if [ $str1 != $str2 ]
+then
+ echo "They are not equal"
+fi
+
+#End of the program
+
+
+prg6.sh
+#!/bin/bash
+#Perform string tests
+echo "Enter the text"
+read str
+if [ $str ]
+then
+ echo "string exists and is not null"
+fi
+
+if [ -n $str ]
+then
+ echo "string exists and is not zero length"
+fi
+
+if [ -z $str ]
+then
+ echo "string exists and is zero lenth"
+fi
+
+echo "The given string is $str"
+echo "Now unset the variable"
+unset str
+echo "After unsent, testing the string [ \$str ]"
+if [ $str ]
+then
+ echo "string exists and is not null"
+else
+ echo "It is null string"
+fi
+
+#End
+
+
+prg7.sh
+#!/bin/bash
+#Comparison on three numbers
+#Demonstrate logical operators
+read -p "Num1:" num1
+read -p "Num2:" num2
+read -p "Num3:" num3
+
+if [ $num1 -gt $num2 -a $num1 -gt $num3 ]
+then
+    echo "$num1 is big"
+elif [ $num2 -gt $num3 ]
+then
+    echo "$num2 is big"
+elif [ $num3 -gt $num2 ]
+then
+    echo "$num3 is big"
+fi
+
+
+prg8.sh
+
+#!/bin/bash
+#Demonstrate postional parameters
+echo "You have entered $# number of positional parameters"
+echo "The program name is $0"
+echo "The positional parameters are $@"
+echo "The positional prameters are $*"
+echo "The first parameter is $1"
+#End
+
+
+prg9.sh
+#!/bin/bash
+if [ $# -ne 1 ]
+then
+  echo "You entred invlid number of arguments...Usage is $0 vgname"
+else
+  vgname=$1
+  vgs --noheading --separator :|grep  $vgname >/dev/null 2>&1
+  if [ $? -eq 0 ]
+  then
+    lvs $vgname
+  else
+    echo "Invalid vgname.. chose from the above list..Exiting"
+  fi
+fi #Outer if ends here
+#End
+
+
+prg10
+
+#!/bin/bash
+#script to print the casting of a movie
+echo -n "
+--------------------------------
+1.casting of bahubali
+2.casting of DJ
+3.casting of Legend
+4.casting of Janatha Garage
+5.exit
+choose your choice [ 1..5 ]:"
+read choice
+if [ $choice -ge 1 -a $choice -le 5 ]
+then
+ case $choice in
+1)
+  echo "ssrajamouli"
+  echo "prabhas"
+  ;;
+2)
+ echo "Allu Arjun"
+ echo "Pooja Hegde"
+  ;;
+3)
+ echo "Bala Krishna "
+ echo "Radhika Apte"
+  ;;
+4)
+ echo "NTR"
+ echo "Kajal Agarwal"
+ ;;
+5)
+  exit
+  ;;
+*)
+ echo " you have not choosen 1..5 option "
+  ;;
+esac
+else
+echo  "you have not choosen valid option existing"
+fi
