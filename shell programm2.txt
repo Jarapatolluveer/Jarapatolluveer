@@ -1,7 +1,10 @@
 prg1.sh
 #!/bin/bash
 #Compare two numbers
-read num1
+
+lafljk
+rfj
+kerhread num1
 read num2
 if [ $num1 -gt $num2 ]
 then
